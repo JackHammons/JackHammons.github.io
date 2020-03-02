@@ -26,8 +26,12 @@ var background = function (window) {
 		var background;
 		
 		// ANIMATION VARIABLES HERE:
-		var tree;
+		var Custodiss;
 		var buildings = [];
+		var voidflower;
+		var voidflower2;
+		var voidflower3;
+		var bulb;
 	 
 		// called at the start of game and whenever the page is resized
 		// add objects for display in background. draws each image added to the background once
@@ -37,40 +41,60 @@ var background = function (window) {
 			// TODO: 2 - Part 2
 			// this fills the background with a obnoxious yellow
 			// you should modify this to suit your game
-			var backgroundFill = draw.bitmap('https://i.pinimg.com/originals/9f/86/7d/9f867dbeead71e9d7ea096a62c3e1d59.jpg');
+			var backgroundFill = draw.bitmap('https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/252670/3149e1489531161eafa02be80c28d135901a4912.jpg');
 			background.addChild(backgroundFill);
 			
-			// TODO: 3 - Add a moon and starfield
-			var star = draw.bitmap('https://lh3.googleusercontent.com/proxy/dJXx8bGcMlX7vUR7_qH9lK1243fsV3MRagUSSswxt1JZEO30ZkIh5UrFWmlC0nCu_WCcGnF1h_NOnXpmK8YBdBiTzXcTehTlk_wYjuZ4qWECk8qAKU0Wgki5t3Q-d_A');
-			star.x = 600;
-			star.y = 25;
-			star.scaleX = 1;
-			star.scaleY = 1;
-			background.addChild(star);
-			var circle;
-			for(var i=0;i<100;i++) {
-				circle = draw.circle(8,'lightBlue','teal',2);
-				circle.x = canvasWidth*Math.random();
-				circle.y = groundY*Math.random();
-				background.addChild(circle);
-			}
-
+		
 			
 			// TODO: 5 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-			for(var i=0;i<5;++i) {
-				var buildingHeight = 300*Math.random();
-				var building = draw.rect(75,buildingHeight,'LightGray','Black',1);
-				building.x = canvasWidth*i*Math.random();
-				building.y = groundY-buildingHeight;
-				background.addChild(building);
-				buildings.push(building);
-			}
+			'for(var i=0;i<5;++i) {'
+				'var buildingHeight = 300*Math.random();'
+				"var building = draw.rect(75,buildingHeight,'LightGray','Black',1);"
+				'building.x = canvasWidth*i*Math.random();'
+				'building.y = groundY-buildingHeight;'
+				'background.addChild(building);'
+				'buildings.push(building);'
+			'}'
+			
+			// the flowers replace the buildings!
 			
 			// TODO 4: Part 1 - Add a tree
-			tree = draw.bitmap('https://vignette.wikia.nocookie.net/dont-starve-game/images/1/13/A_Lumpy_Evergreen.png/revision/latest/top-crop/width/360/height/450?cb=20130906135949');
-			tree.x = 400;
-			tree.y = -45;
-			background.addChild(tree);
+			Custodiss = draw.bitmap('Custodiss.png');
+			Custodiss.x = 1500;
+			Custodiss.y = 65;
+			Custodiss.scaleX = 2.5;
+			Custodiss.scaleY = 2.5;
+			background.addChild(Custodiss);
+			
+			voidflower = draw.bitmap('Voidflower.png');
+			voidflower.x = 350;
+			voidflower.y = 100;
+			voidflower.scaleX = 3;
+			voidflower.scaleY = 3;
+			background.addChild(voidflower);
+			
+			voidflower2 = draw.bitmap('Void flower open.png');
+			voidflower2.x = 1950;
+			voidflower2.y = 90;
+			voidflower2.scaleX = 3;
+			voidflower2.scaleY = 3;
+			background.addChild(voidflower2);
+			
+			voidflower3 = draw.bitmap('Void flower open2.png');
+			voidflower3.x = 1050;
+			voidflower3.y = 90;
+			voidflower3.scaleX = 3;
+			voidflower3.scaleY = 3;
+			background.addChild(voidflower3);
+			
+			
+			bulb = draw.bitmap('mandakkar.png');
+			bulb.x = 700;
+			bulb.y = 100;
+			bulb.scaleX = .7;
+			bulb.scaleY = .7;
+			background.addChild(bulb);			
+			
 			
 			
 		} // end of render function - DO NOT DELETE
@@ -85,9 +109,25 @@ var background = function (window) {
 			var groundY = ground.y;
 			
 			// TODO 4: Part 2 - Move the tree!
-			tree.x = tree.x - 1;
-			if(tree.x < -200) {
-			tree.x = canvasWidth;
+			Custodiss.x = Custodiss.x - 1;
+			if(Custodiss.x < -1000) {
+			Custodiss.x = canvasWidth;
+}
+			voidflower.x = voidflower.x - 1;
+			if(voidflower.x < -700) {
+			voidflower.x = canvasWidth;
+}
+			voidflower2.x = voidflower2.x - 1;
+			if(voidflower2.x < -900) {
+			voidflower2.x = canvasWidth;
+			
+}			voidflower3.x = voidflower3.x - 1;
+			if(voidflower3.x < -800) {
+			voidflower3.x = canvasWidth;
+}
+			bulb.x = bulb.x - 1;
+			if(bulb.x < -700) {
+			bulb.x = canvasWidth;
 }
 
 			
