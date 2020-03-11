@@ -12,7 +12,7 @@ var level01 = function (window) {
         // this data will allow us to define all of the
         // behavior of our game
         var levelData = {
-            "name": "Legend of Hallebot: Journey Through the Void",
+            "name": "Legend of Hallebot and Born: Void's Call",
             "number": 1, 
             "speed": -3,
             "gameItems": [
@@ -40,19 +40,23 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 5800, "y": groundY},
                 { "type": "sawblade", "x": 6000, "y": groundY - 120},
                 
-                { "type": "enemy", "x": 1200, "y": groundY - 50},    
-                { "type": "enemya", "x": 1200, "y": groundY - 50},   
-                { "type": "enemyb", "x": 1200, "y": groundY - 50},                    
-                { "type": "enemy2", "x": 1200, "y": groundY - 50},  
-                { "type": "enemy2a", "x": 1200, "y": groundY - 50},                 
-                { "type": "enemy2b", "x": 1200, "y": groundY - 50},                 
-                { "type": "enemy3", "x": 1200, "y": groundY - 50},    
-                { "type": "friend", "x": 1200, "y": groundY - 50},  
+                { "type": "enemy", "x": 1400, "y": groundY - 25},    
+                { "type": "enemy", "x": 2000, "y": groundY - 25},   
+                { "type": "enemy", "x": 3200, "y": groundY - 25},                    
+                { "type": "enemy2", "x": 2300, "y": groundY - 65},  
+                { "type": "enemy2", "x": 1700, "y": groundY - 65},                 
+                { "type": "enemy2", "x": 2800, "y": groundY - 65},                 
+                { "type": "enemy3", "x": 3900, "y": groundY - 70},    
+                { "type": "enemy4", "x": 4200, "y": groundY - 35},       
+                { "type": "enemy4", "x": 7000, "y": groundY - 35},
+                { "type": "enemy5", "x": 1000, "y": groundY}, 
+                { "type": "enemy5", "x": 3100, "y": groundY},                 
+                { "type": "friend", "x": 15, "y": groundY - 170},  
             ]
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(false);
+        game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
         
@@ -73,15 +77,42 @@ var level01 = function (window) {
             obstacleImage.x = -35;
             obstacleImage.y = -35;
         }
+        
+        for (var key = 0; key < levelData.gameItems.length; key++) {
+            var gameItemObject = levelData.gameItems[key];
+                if (gameItemObject.type === 'sawblade'){
+                    createSawBlade(gameItemObject.x, gameItemObject.y);
+                }
+                
+                if (gameItemObject.type === 'enemy'){
+                    createEnemy(gameItemObject.x, gameItemObject.y);
+                }
+                if (gameItemObject.type === 'enemy2'){
+                    createEnemy2(gameItemObject.x, gameItemObject.y);
+                }
+                if (gameItemObject.type === 'enemy3'){
+                    createEnemy3(gameItemObject.x, gameItemObject.y);
+                }
+                if (gameItemObject.type === 'enemy4'){
+                    createEnemy4(gameItemObject.x, gameItemObject.y);
+                }
+                if (gameItemObject.type === 'enemy5'){
+                    createEnemy5(gameItemObject.x, gameItemObject.y);
+                }
+                if (gameItemObject.type === 'friend'){
+                    createFriend(gameItemObject.x, gameItemObject.y);
+                }
+        };    
             
+        function createEnemy (x,y) {
             var enemy =  game.createGameItem('enemy',25);
             var blaster = draw.bitmap('shyphoninth (2).png');
             blaster.x = -85;
             blaster.y = -100;
             enemy.addChild(blaster);
             
-            enemy.x = 2000;
-            enemy.y = groundY - 25;
+            enemy.x = x;
+            enemy.y = y;
             
             game.addGameItem(enemy);       
             enemy.velocityX = -1;
@@ -94,57 +125,19 @@ var level01 = function (window) {
                 game.increaseScore(50);
                 enemy.fadeOut();
             };  
-            
-            var enemya =  game.createGameItem('enemya',25);
-            var blastera = draw.bitmap('shyphoninth (2).png');
-            blastera.x = -85;
-            blastera.y = -100;
-            enemya.addChild(blastera);
-            
-            enemya.x = 3200;
-            enemya.y = groundY - 25;
-            
-            game.addGameItem(enemya);       
-            enemya.velocityX = -1;
-            
-            enemya.onPlayerCollision = function() {
-                game.changeIntegrity(-30);
-                enemya.fadeOut();
-            };
-            enemya.onProjectileCollision = function() {
-                game.increaseScore(50);
-                enemya.fadeOut();
-            };    
-            
-            var enemyb =  game.createGameItem('enemyb',25);
-            var blasterb = draw.bitmap('shyphoninth (2).png');
-            blasterb.x = -85;
-            blasterb.y = -100;
-            enemyb.addChild(blasterb);
-            
-            enemyb.x = 4500;
-            enemyb.y = groundY - 25;
-            
-            game.addGameItem(enemyb);       
-            enemyb.velocityX = -1;
-            
-            enemyb.onPlayerCollision = function() {
-                game.changeIntegrity(-30);
-                enemyb.fadeOut();
-            };
-            enemya.onProjectileCollision = function() {
-                game.increaseScore(50);
-                enemya.fadeOut();
-            };            
-            
+        }
+        
+        
+
+        function createEnemy2 (x, y) {    
             var enemy2 =  game.createGameItem('enemy2',25);
             var crawl = draw.bitmap('crawlaggar.png');
             crawl.x = -85;
             crawl.y = -100;
             enemy2.addChild(crawl);
             
-            enemy2.x = 1200;
-            enemy2.y = groundY - 65;
+            enemy2.x = x;
+            enemy2.y = y;
             
             game.addGameItem(enemy2);       
             enemy2.velocityX = -1;
@@ -157,98 +150,96 @@ var level01 = function (window) {
                 game.increaseScore(50);
                 enemy2.fadeOut();
             };                
-            
-            var enemy2a =  game.createGameItem('enemy2a',25);
-            var crawla = draw.bitmap('crawlaggar.png');
-            crawla.x = -85;
-            crawla.y = -100;
-            enemy2a.addChild(crawla);
-            
-            enemy2a.x = 1800;
-            enemy2a.y = groundY - 65;
-            
-            game.addGameItem(enemy2a);       
-            enemy2a.velocityX = -1;
-            
-            enemy2a.onPlayerCollision = function() {
-                game.changeIntegrity(-30);
-                enemy2a.fadeOut();
-            };
-            enemy2a.onProjectileCollision = function() {
-                game.increaseScore(50);
-                enemy2a.fadeOut();
-            };
-            
-              var enemy2b =  game.createGameItem('enemy2',25);
-            var crawlb = draw.bitmap('crawlaggar.png');
-            crawlb.x = -85;
-            crawlb.y = -100;
-            enemy2b.addChild(crawlb);
-            
-            enemy2b.x = 2500;
-            enemy2b.y = groundY - 65;
-            
-            game.addGameItem(enemy2b);       
-            enemy2b.velocityX = -1;
-            
-            enemy2b.onPlayerCollision = function() {
-                game.changeIntegrity(-30);
-                enemy2b.fadeOut();
-            };
-            enemy2b.onProjectileCollision = function() {
-                game.increaseScore(50);
-                enemy2b.fadeOut();
-            };                      
-            
-            var enemy3 =  game.createGameItem('enemy3',25);
+        }
+        
+        function createEnemy3 (x, y) {
+            var enemy3 =  game.createGameItem('enemy3',95);
             var thevoid = draw.bitmap('the Void (2).png');
-            thevoid.x = -185;
+            thevoid.x = -265;
             thevoid.y = -350;
-            thevoid.scaleX = 2.8;
-            thevoid.scaleY = 2.8;
+            thevoid.scaleX = 3.5;
+            thevoid.scaleY = 3.5;
             enemy3.addChild(thevoid);
             
-            enemy3.x = 4000;
-            enemy3.y = groundY - 15;
+            enemy3.x = x;
+            enemy3.y = y;
             
             game.addGameItem(enemy3);       
             enemy3.velocityX = -1;
             
             enemy3.onPlayerCollision = function() {
                 game.changeIntegrity(-10000);
-                enemy.fadeOut();
             };
-            enemy3.onProjectileCollision = function() {
-                game.increaseScore(50);
-                enemy.fadeOut();
-            }; 
+        }
+        
+        //ASCEND THROUGH THE VOID! THAT'S YOUR REWARD!!!//
+        
+        function createEnemy4 (x,y) {
+            var enemy4 =  game.createGameItem('enemy4',25);
+            var snail = draw.bitmap('klimeth (2).png');
+            snail.x = -195;
+            snail.y = -240;
+            snail.scaleX = 2.5;
+            snail.scaleY = 2.5;
+            enemy4.addChild(snail);
             
+            enemy4.x = x;
+            enemy4.y = y;
+            
+            game.addGameItem(enemy4);       
+            enemy4.velocityX = -4;
+            
+            enemy4.onPlayerCollision = function() {
+                game.changeIntegrity(-30);
+                enemy4.fadeOut();
+            };
+            enemy4.onProjectileCollision = function() {
+                game.increaseScore(50);
+                enemy4.fadeOut();
+            }; 
+        }
+        function createEnemy5 (x,y) {
+            var enemy5 =  game.createGameItem('enemy5',15);
+            var trap = draw.bitmap('skelegoth (3).png');
+            trap.x = -255;
+            trap.y = -160;
+            enemy5.addChild(trap);
+            
+            enemy5.x = x;
+            enemy5.y = y;
+            
+            game.addGameItem(enemy5);       
+            enemy5.velocityX = -1;
+            
+            enemy5.onPlayerCollision = function() {
+                game.changeIntegrity(-90);
+                enemy5.fadeOut();
+            };
+        }    
+        
+        function createFriend (x,y) {   
             var friend =  game.createGameItem('friend',25);
             var born = draw.bitmap('Born.png');
             born.scaleX = 3;
             born.scaleY = 3;
             friend.addChild(born);
             
-            friend.x = 15;
-            friend.y = groundY - 170;
+            friend.x = x;
+            friend.y = y;
             
             game.addGameItem(friend);       
             friend.velocityX = 0;
-        
+        }
 
-        for (var key = 0; key < levelData.gameItems.length; key++) {
-            var gameItemObject = levelData.gameItems[key];
-                if (gameItemObject.type === 'sawblade'){
-                    createSawBlade(gameItemObject.x, gameItemObject.y);
-                    
-            }
+
+        
 
     // code to do something with each element
         };
-
-        // DO NOT EDIT CODE BELOW HERE
     }
-};
+        // DO NOT EDIT CODE BELOW HERE
+    
+
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&

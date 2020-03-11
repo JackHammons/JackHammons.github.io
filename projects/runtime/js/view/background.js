@@ -31,6 +31,7 @@ var background = function (window) {
 		var voidflower;
 		var voidflower2;
 		var voidflower3;
+		var vacumore;
 		var bulb;
 	 
 		// called at the start of game and whenever the page is resized
@@ -59,16 +60,16 @@ var background = function (window) {
 			// the flowers replace the buildings!
 			
 			// TODO 4: Part 1 - Add a tree
-			Custodiss = draw.bitmap('Custodiss.png');
+			Custodiss = draw.bitmap('custodiss (2).png');
 			Custodiss.x = 1500;
-			Custodiss.y = 65;
+			Custodiss.y = 95;
 			Custodiss.scaleX = 2.5;
 			Custodiss.scaleY = 2.5;
 			background.addChild(Custodiss);
 			
 			voidflower = draw.bitmap('Voidflower.png');
 			voidflower.x = 350;
-			voidflower.y = 100;
+			voidflower.y = 120;
 			voidflower.scaleX = 3;
 			voidflower.scaleY = 3;
 			background.addChild(voidflower);
@@ -86,6 +87,13 @@ var background = function (window) {
 			voidflower3.scaleX = 3;
 			voidflower3.scaleY = 3;
 			background.addChild(voidflower3);
+			
+			vacumore = draw.bitmap('sucker.png');
+			vacumore.x = 1300;
+			vacumore.y = 205;
+			vacumore.scaleX = 1.5;
+			vacumore.scaleY = 1.5;
+			background.addChild(vacumore);			
 			
 			
 			bulb = draw.bitmap('mandakkar.png');
@@ -124,6 +132,10 @@ var background = function (window) {
 }			voidflower3.x = voidflower3.x - 1;
 			if(voidflower3.x < -800) {
 			voidflower3.x = canvasWidth;
+}
+			vacumore.x = vacumore.x - 1;
+			if(vacumore.x < -800) {
+			vacumore.x = canvasWidth;
 }
 			bulb.x = bulb.x - 1;
 			if(bulb.x < -700) {
